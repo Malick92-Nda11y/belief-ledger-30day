@@ -4,7 +4,7 @@ Generated deterministically from committed claims and resolutions.
 
 ## Aggregate
 
-- Claims registered: 2
+- Claims registered: 3
 - Resolved claims: 0
 - Void claims: 0
 - Mean Brier: None
@@ -38,3 +38,4 @@ Generated deterministically from committed claims and resolutions.
 |---|---|---:|---|---|
 | 2026-07-06T15:00:00Z-001 | rates | 0.55 | OPEN | The US 10-year Treasury yield (FRED DGS10) will close higher on 2026-07-10 than on the prior trading day. |
 | 2026-07-06T22:48:26Z-002 | equity_index | 0.51 | OPEN | The S&P 500 (FRED SP500) will close higher on 2026-07-07 than on the prior trading day. |
+| 2026-07-06T22:48:27Z-003 | volatility | 0.55 | OPEN | The VIX (VIXCLS) will close higher on 2026-07-07 than on the prior trading day. |

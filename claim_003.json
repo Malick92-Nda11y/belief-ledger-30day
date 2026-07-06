@@ -1,0 +1,21 @@
+{
+  "claim_id": "2026-07-06T22:48:27Z-003",
+  "registered_at_utc": "2026-07-06T22:48:27Z",
+  "domain": "volatility",
+  "statement_text": "The VIX (VIXCLS) will close higher on 2026-07-07 than on the prior trading day.",
+  "probability": 0.55,
+  "rationale": "Operator stated a mild bullish lean for VIX after reviewing TradingView and FRED.",
+  "machine_condition": {
+    "source_adapter": "VIX_DAILY",
+    "series_id": "VIXCLS",
+    "observation_date": "2026-07-07",
+    "value_transform": "change_from_prior",
+    "operator": "GT",
+    "threshold": 0,
+    "resolve_after_utc": "2026-07-11T12:00:00Z",
+    "missing_policy": "wait_72h_then_void",
+    "revision_policy": "resolution_snapshot_committed",
+    "rounding_policy": "exact_raw_decimal",
+    "calendar_policy": "exact_date"
+  }
+}
