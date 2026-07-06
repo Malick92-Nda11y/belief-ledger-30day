@@ -1,0 +1,22 @@
+{
+  "claim_id": "2026-07-06T22:48:26Z-002",
+  "domain": "equity_index",
+  "machine_condition": {
+    "calendar_policy": "exact_date",
+    "missing_policy": "wait_72h_then_void",
+    "observation_date": "2026-07-07",
+    "operator": "GT",
+    "resolve_after_utc": "2026-07-11T12:00:00Z",
+    "revision_policy": "resolution_snapshot_committed",
+    "rounding_policy": "exact_raw_decimal",
+    "series_id": "SP500",
+    "source_adapter": "FRED_DAILY",
+    "threshold": 0,
+    "value_transform": "change_from_prior"
+  },
+  "probability": 0.51,
+  "provenance_hash": "a779803b3a612d561bd0184d6e8fd43f8a6e7a602c5346ce17f0b00e8a5841b8",
+  "rationale": "Operator stated a very small bullish lean for the S&P 500 after reviewing TradingView and FRED.",
+  "registered_at_utc": "2026-07-06T22:48:26Z",
+  "statement_text": "The S&P 500 (FRED SP500) will close higher on 2026-07-07 than on the prior trading day."
+}
