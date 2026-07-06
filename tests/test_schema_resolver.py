@@ -7,7 +7,7 @@ import pytest
 
 from belief_ledger.adapters import Observation, Snapshot
 from belief_ledger.resolver import ResolutionError, resolve_claim
-from belief_ledger.schema import SchemaError, validate_claim
+from belief_ledger.schema import SchemaError, claim_file_stem, validate_claim
 
 
 class FakeAdapter:
@@ -17,6 +17,11 @@ class FakeAdapter:
     def fetch_snapshot(self, series_id: str) -> Snapshot:
         assert series_id == self.snapshot.series_id
         return self.snapshot
+
+
+class ExplodingAdapter:
+    def fetch_snapshot(self, series_id: str) -> Snapshot:
+        raise AssertionError("adapter fetch should not happen")
 
 
 def adapter_config(**overrides):
@@ -187,3 +192,16 @@ def test_next_valid_source_date_policy_selects_forward_observation():
     )
     assert resolution.status == "RESOLVED_TRUE"
     assert resolution.source_observation_date == "2026-07-13"
+
+
+def test_resolve_once_refuses_existing_snapshot_before_fetch(tmp_path):
+    record = validate_claim(claim(), adapter_config=adapter_config())
+    existing = tmp_path / f"{claim_file_stem(record['claim_id'])}.snapshot.json"
+    existing.write_text("{}", encoding="utf-8")
+    with pytest.raises(ResolutionError, match="already has a committed snapshot"):
+        resolve_claim(
+            record,
+            now_utc=datetime(2026, 7, 12, 1, 0, tzinfo=timezone.utc),
+            adapters={"FRED_DAILY": ExplodingAdapter()},
+            snapshot_dir=tmp_path,
+        )

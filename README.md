@@ -50,3 +50,15 @@ python -m belief_ledger.cli generate-scorecard
 ```
 
 No claim registration command should be used until the pre-claim review gate clears.
+
+## Append-Only Operating Protocol
+
+After Research clears the resolver:
+
+1. `register-claim` writes exactly one new `claims/<claim_id-with-colons-replaced-by-dashes>.json` file and refuses to overwrite an existing claim. The JSON record's `claim_id` remains unchanged.
+2. Commit the claim immediately before registering or resolving anything else.
+3. `resolve-claim` writes exactly one new snapshot and one new resolution using the same safe filename stem, and refuses to overwrite either.
+4. Commit the snapshot and resolution immediately before resolving or scoring anything else.
+5. `generate-scorecard` revalidates every claim, including `provenance_hash`, before rendering. A tampered claim fails the scorecard build.
+
+The git commit history is the public provenance. The code guards prevent accidental overwrites; the operator still must commit each state change immediately.

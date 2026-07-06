@@ -5,6 +5,7 @@ from pathlib import Path
 from typing import Any
 
 from .scorer import score_claims
+from .schema import validate_claim
 
 
 def load_json_dir(path: Path) -> list[dict[str, Any]]:
@@ -13,6 +14,15 @@ def load_json_dir(path: Path) -> list[dict[str, Any]]:
     rows = []
     for item in sorted(path.glob("*.json")):
         rows.append(json.loads(item.read_text(encoding="utf-8")))
+    return rows
+
+
+def load_claims_dir(path: Path) -> list[dict[str, Any]]:
+    if not path.exists():
+        return []
+    rows = []
+    for item in sorted(path.glob("*.json")):
+        rows.append(validate_claim(json.loads(item.read_text(encoding="utf-8"))))
     return rows
 
 

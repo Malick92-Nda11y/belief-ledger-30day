@@ -58,6 +58,12 @@ def sha256_json(value: Any) -> str:
     return hashlib.sha256(canonical_json(value).encode("utf-8")).hexdigest()
 
 
+def claim_file_stem(claim_id: str) -> str:
+    if not isinstance(claim_id, str) or not CLAIM_ID_RE.match(claim_id):
+        raise SchemaError("claim_id must look like 2026-07-10T14:32:05Z-017")
+    return claim_id.replace(":", "-")
+
+
 def parse_utc(value: str) -> datetime:
     if not isinstance(value, str) or not value.endswith("Z"):
         raise SchemaError("UTC datetimes must be ISO-8601 strings ending in Z")

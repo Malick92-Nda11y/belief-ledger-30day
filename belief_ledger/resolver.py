@@ -8,7 +8,7 @@ from pathlib import Path
 from typing import Any
 
 from .adapters import Observation, Snapshot, adapter_registry, snapshot_to_json
-from .schema import SchemaError, parse_date, parse_utc, validate_claim
+from .schema import SchemaError, claim_file_stem, parse_date, parse_utc, validate_claim
 
 
 class ResolutionError(RuntimeError):
@@ -101,14 +101,18 @@ def resolve_claim(
     if now_utc < resolve_after:
         raise ResolutionError("claim cannot be resolved before resolve_after_utc")
 
+    snapshot_path = None
+    if snapshot_dir is not None:
+        snapshot_dir.mkdir(parents=True, exist_ok=True)
+        snapshot_path = snapshot_dir / f"{claim_file_stem(claim['claim_id'])}.snapshot.json"
+        if snapshot_path.exists():
+            raise ResolutionError(f"claim already has a committed snapshot: {snapshot_path}")
+
     adapters = adapter_registry() if adapters is None else adapters
     adapter_name = condition["source_adapter"]
     snapshot = adapters[adapter_name].fetch_snapshot(condition["series_id"])
     snapshot_json = snapshot_to_json(snapshot)
-    snapshot_path = None
-    if snapshot_dir is not None:
-        snapshot_dir.mkdir(parents=True, exist_ok=True)
-        snapshot_path = snapshot_dir / f"{claim['claim_id']}.snapshot.json"
+    if snapshot_path is not None:
         snapshot_path.write_text(json.dumps(snapshot_json, indent=2, sort_keys=True), encoding="utf-8")
 
     value, selected, prior, void_reason = transformed_value(snapshot, condition)
