@@ -1,0 +1,22 @@
+{
+  "claim_id": "2026-07-06T15:00:00Z-001",
+  "domain": "rates",
+  "machine_condition": {
+    "calendar_policy": "exact_date",
+    "missing_policy": "wait_72h_then_void",
+    "observation_date": "2026-07-10",
+    "operator": "GT",
+    "resolve_after_utc": "2026-07-14T12:00:00Z",
+    "revision_policy": "resolution_snapshot_committed",
+    "rounding_policy": "exact_raw_decimal",
+    "series_id": "DGS10",
+    "source_adapter": "FRED_DAILY",
+    "threshold": 0,
+    "value_transform": "change_from_prior"
+  },
+  "probability": 0.55,
+  "provenance_hash": "e05d6c86b624157332e800346b7f7d680e4f35ee0febdc7b5a11b37a5f034770",
+  "rationale": "First claim - a near-even directional call on the 10-year yield, to start the ledger.",
+  "registered_at_utc": "2026-07-06T15:00:00Z",
+  "statement_text": "The US 10-year Treasury yield (FRED DGS10) will close higher on 2026-07-10 than on the prior trading day."
+}
