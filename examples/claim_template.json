@@ -1,0 +1,21 @@
+{
+  "claim_id": "2026-07-10T14:32:05Z-001",
+  "registered_at_utc": "2026-07-10T14:32:05Z",
+  "domain": "rates",
+  "statement_text": "DGS10 will be above 4.00 on 2026-07-11.",
+  "machine_condition": {
+    "source_adapter": "FRED_DAILY",
+    "series_id": "DGS10",
+    "observation_date": "2026-07-11",
+    "value_transform": "raw",
+    "operator": "GT",
+    "threshold": "4.00",
+    "resolve_after_utc": "2026-07-12T00:30:00Z",
+    "missing_policy": "wait_72h_then_void",
+    "revision_policy": "resolution_snapshot_committed",
+    "rounding_policy": "exact_raw_decimal",
+    "calendar_policy": "exact_date"
+  },
+  "probability": "0.62",
+  "rationale": "Example only. Do not register before Research review."
+}

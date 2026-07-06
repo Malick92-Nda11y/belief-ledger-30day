@@ -1,0 +1,45 @@
+{
+  "ECB_FX_DAILY": {
+    "active": true,
+    "domains": [
+      "fx"
+    ],
+    "status": "green"
+  },
+  "EIA_WTI_DAILY": {
+    "active": true,
+    "domains": [
+      "commodity"
+    ],
+    "status": "admitted_by_probe"
+  },
+  "FRED_DAILY": {
+    "active": true,
+    "domains": [
+      "rates",
+      "equity_index"
+    ],
+    "status": "green"
+  },
+  "FRED_FED_TARGET": {
+    "active": true,
+    "domains": [
+      "cb_event"
+    ],
+    "status": "admitted_by_probe"
+  },
+  "FRED_MONTHLY": {
+    "active": true,
+    "domains": [
+      "rates"
+    ],
+    "status": "green"
+  },
+  "VIX_DAILY": {
+    "active": true,
+    "domains": [
+      "volatility"
+    ],
+    "status": "green"
+  }
+}

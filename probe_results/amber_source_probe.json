@@ -1,0 +1,42 @@
+{
+  "adapters": {
+    "EIA_WTI_DAILY": {
+      "passed": true,
+      "series": [
+        {
+          "latest_observation_date": "2026-06-29",
+          "latest_value": "71.87",
+          "n_observations": 10191,
+          "passed": true,
+          "raw_sha256": "719ca7e439f798147a08673e9f5078f02d466f077d4621a009a2b336ac443570",
+          "series_id": "DCOILWTICO",
+          "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DCOILWTICO"
+        }
+      ]
+    },
+    "FRED_FED_TARGET": {
+      "passed": true,
+      "series": [
+        {
+          "latest_observation_date": "2026-07-05",
+          "latest_value": "3.75",
+          "n_observations": 6411,
+          "passed": true,
+          "raw_sha256": "127559aa3acb8702bf99ed2661e733dcd30dcc1397e51f4c3b04295b473ab813",
+          "series_id": "DFEDTARU",
+          "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DFEDTARU"
+        },
+        {
+          "latest_observation_date": "2026-07-05",
+          "latest_value": "3.50",
+          "n_observations": 6411,
+          "passed": true,
+          "raw_sha256": "ce077dfcb619463844fa2cd8ae0491dbe529d3c49ae28ae56225587707a2efbc",
+          "series_id": "DFEDTARL",
+          "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DFEDTARL"
+        }
+      ]
+    }
+  },
+  "created_at_utc": "2026-07-06T08:30:02.952143Z"
+}
