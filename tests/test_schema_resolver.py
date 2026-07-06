@@ -21,9 +21,21 @@ class FakeAdapter:
 
 def adapter_config(**overrides):
     base = {
-        "FRED_DAILY": type("Cfg", (), {"active": True, "domains": ("rates", "equity_index"), "status": "green"})(),
-        "VIX_DAILY": type("Cfg", (), {"active": True, "domains": ("volatility",), "status": "green"})(),
-        "EIA_WTI_DAILY": type("Cfg", (), {"active": False, "domains": ("commodity",), "status": "amber"})(),
+        "FRED_DAILY": type(
+            "Cfg",
+            (),
+            {"active": True, "domains": ("rates", "equity_index"), "series_ids": ("DGS2", "DGS10", "DGS30", "SP500"), "status": "green"},
+        )(),
+        "VIX_DAILY": type(
+            "Cfg",
+            (),
+            {"active": True, "domains": ("volatility",), "series_ids": ("VIXCLS",), "status": "green"},
+        )(),
+        "EIA_WTI_DAILY": type(
+            "Cfg",
+            (),
+            {"active": False, "domains": ("commodity",), "series_ids": ("DCOILWTICO",), "status": "amber"},
+        )(),
     }
     base.update(overrides)
     return base
@@ -98,6 +110,11 @@ def test_validate_claim_rejects_free_form_adapter():
             claim(machine_condition={"source_adapter": "https://example.test/free-form.csv"}),
             adapter_config=adapter_config(),
         )
+
+
+def test_validate_claim_rejects_unadmitted_series_for_adapter():
+    with pytest.raises(SchemaError, match="not admitted"):
+        validate_claim(claim(machine_condition={"series_id": "RANDOM_SERIES"}), adapter_config=adapter_config())
 
 
 def test_resolver_uses_machine_condition_not_statement_text():

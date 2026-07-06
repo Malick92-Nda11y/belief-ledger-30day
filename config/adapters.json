@@ -4,12 +4,25 @@
     "domains": [
       "fx"
     ],
+    "series_ids": [
+      "USD",
+      "GBP",
+      "JPY",
+      "CHF",
+      "CAD",
+      "AUD",
+      "NOK",
+      "SEK"
+    ],
     "status": "green"
   },
   "EIA_WTI_DAILY": {
     "active": true,
     "domains": [
       "commodity"
+    ],
+    "series_ids": [
+      "DCOILWTICO"
     ],
     "status": "admitted_by_probe"
   },
@@ -19,12 +32,22 @@
       "rates",
       "equity_index"
     ],
+    "series_ids": [
+      "DGS2",
+      "DGS10",
+      "DGS30",
+      "SP500"
+    ],
     "status": "green"
   },
   "FRED_FED_TARGET": {
     "active": true,
     "domains": [
       "cb_event"
+    ],
+    "series_ids": [
+      "DFEDTARU",
+      "DFEDTARL"
     ],
     "status": "admitted_by_probe"
   },
@@ -33,12 +56,18 @@
     "domains": [
       "rates"
     ],
+    "series_ids": [
+      "FEDFUNDS"
+    ],
     "status": "green"
   },
   "VIX_DAILY": {
     "active": true,
     "domains": [
       "volatility"
+    ],
+    "series_ids": [
+      "VIXCLS"
     ],
     "status": "green"
   }

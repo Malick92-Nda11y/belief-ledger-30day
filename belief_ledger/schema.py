@@ -34,6 +34,7 @@ class AdapterConfig:
     active: bool
     status: str
     domains: tuple[str, ...]
+    series_ids: tuple[str, ...]
 
 
 def load_adapter_config(path: Path = CONFIG_PATH) -> dict[str, AdapterConfig]:
@@ -43,6 +44,7 @@ def load_adapter_config(path: Path = CONFIG_PATH) -> dict[str, AdapterConfig]:
             active=bool(value["active"]),
             status=str(value["status"]),
             domains=tuple(value.get("domains", [])),
+            series_ids=tuple(value.get("series_ids", [])),
         )
         for key, value in raw.items()
     }
@@ -146,8 +148,11 @@ def validate_claim(record: dict[str, Any], *, adapter_config: dict[str, AdapterC
         raise SchemaError(f"source_adapter inactive pending probe: {adapter_name}")
     if domain not in adapter.domains:
         raise SchemaError(f"adapter {adapter_name} is not admitted for domain {domain}")
-    if not isinstance(condition["series_id"], str) or not condition["series_id"].strip():
+    series_id = condition["series_id"]
+    if not isinstance(series_id, str) or not series_id.strip():
         raise SchemaError("series_id is required")
+    if adapter.series_ids and series_id not in adapter.series_ids:
+        raise SchemaError(f"series_id {series_id} is not admitted for adapter {adapter_name}")
     if condition["value_transform"] not in VALUE_TRANSFORMS:
         raise SchemaError("invalid value_transform")
     operator = condition["operator"]
