@@ -1,0 +1,21 @@
+{
+  "claim_id": "2026-07-07T22:06:51Z-004",
+  "registered_at_utc": "2026-07-07T22:06:51Z",
+  "domain": "equity_index",
+  "statement_text": "The S&P 500 (FRED SP500) will close lower on 2026-07-08 than on the prior trading day.",
+  "probability": 0.52,
+  "rationale": "Operator stated a small bearish lean for the S&P 500 after reviewing the July 7 close on TradingView.",
+  "machine_condition": {
+    "source_adapter": "FRED_DAILY",
+    "series_id": "SP500",
+    "observation_date": "2026-07-08",
+    "value_transform": "change_from_prior",
+    "operator": "LT",
+    "threshold": 0,
+    "resolve_after_utc": "2026-07-12T12:00:00Z",
+    "missing_policy": "wait_72h_then_void",
+    "revision_policy": "resolution_snapshot_committed",
+    "rounding_policy": "exact_raw_decimal",
+    "calendar_policy": "exact_date"
+  }
+}

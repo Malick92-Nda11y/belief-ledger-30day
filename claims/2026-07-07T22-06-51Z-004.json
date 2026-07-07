@@ -1,0 +1,22 @@
+{
+  "claim_id": "2026-07-07T22:06:51Z-004",
+  "domain": "equity_index",
+  "machine_condition": {
+    "calendar_policy": "exact_date",
+    "missing_policy": "wait_72h_then_void",
+    "observation_date": "2026-07-08",
+    "operator": "LT",
+    "resolve_after_utc": "2026-07-12T12:00:00Z",
+    "revision_policy": "resolution_snapshot_committed",
+    "rounding_policy": "exact_raw_decimal",
+    "series_id": "SP500",
+    "source_adapter": "FRED_DAILY",
+    "threshold": 0,
+    "value_transform": "change_from_prior"
+  },
+  "probability": 0.52,
+  "provenance_hash": "429403b3a91d232e5e1ffc2e8a9d4acbf81eafa7bc9cbc3bc17900edf7ba638e",
+  "rationale": "Operator stated a small bearish lean for the S&P 500 after reviewing the July 7 close on TradingView.",
+  "registered_at_utc": "2026-07-07T22:06:51Z",
+  "statement_text": "The S&P 500 (FRED SP500) will close lower on 2026-07-08 than on the prior trading day."
+}
